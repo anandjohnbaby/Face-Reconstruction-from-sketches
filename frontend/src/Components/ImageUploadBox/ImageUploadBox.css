@@ -1,0 +1,97 @@
+.image-upload-container {
+  display: flex;
+  flex-direction: column; /* Arrange elements vertically by default */
+  align-items: center; /* Center the content horizontally */
+  gap: 20px; /* Adjust the space between elements */
+  padding-top: 140px; /* Adjusted top padding */
+}
+
+.image-box-container {
+  display: flex;
+  flex-direction: row; /* Arrange the image boxes horizontally by default */
+  gap: 100px; /* Space between the two boxes */
+  justify-content: center; /* Center the boxes horizontally */
+}
+
+.image-box {
+  border: 2px dashed gray;
+  width: 300px; /* Fixed width */
+  height: 300px; /* Fixed height */
+  display: flex;
+  align-items: center; /* Center content vertically inside the box */
+  justify-content: center; /* Center content horizontally inside the box */
+  text-align: center;
+  overflow: hidden; /* Prevents image overflow */
+}
+
+.image-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Ensures the image keeps its aspect ratio */
+}
+
+.file-input {
+  display: none; /* Hide the file input */
+}
+
+.convert-button,
+.reset-button {
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px; /* Adds spacing between the buttons and the boxes */
+}
+
+.convert-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.reset-button {
+  background-color: #f44336;
+}
+
+.reset-button:hover {
+  background-color: #e53935;
+}
+
+/* Mobile view adjustments */
+@media (max-width: 768px) {
+  .image-upload-container {
+    padding-left: 20px; /* Padding adjustments for mobile */
+    gap: 20px;
+  }
+
+  .image-box-container {
+    flex-direction: column; /* Stack image boxes vertically in mobile view */
+    gap: 20px; /* Space between the image boxes */
+  }
+
+  .image-box {
+    width: 300px; /* Fixed width for mobile view */
+    height: 300px; /* Fixed height for mobile view */
+    margin: 0 auto; /* Center the boxes horizontally */
+  }
+
+  .convert-button,
+  .reset-button {
+    width: 100%; /* Make the buttons full width on mobile */
+  }
+}
+
+/* Full screen view (larger screens) */
+@media (min-width: 769px) {
+  .button-container {
+    display: flex;
+    flex-direction: row; /* Place buttons side by side */
+    gap: 20px; /* Space between the buttons */
+  }
+
+  .convert-button,
+  .reset-button {
+    width: auto; /* Allow the buttons to take only the space they need */
+  }
+}
