@@ -42,7 +42,7 @@ def process_image(image_bytes):
     g_img = model.predict(np.expand_dims(norm_img, 0))[0]
     g_img = (g_img + 1) * 127.5  # Denormalize to [0, 255]
     
-    # Resize generated image for display (if necessary)
+    # Resize generated image for display 
     g_img = cv2.resize(g_img, (200, 250))
     
     # Convert grayscale to RGB if necessary (for visualization)
