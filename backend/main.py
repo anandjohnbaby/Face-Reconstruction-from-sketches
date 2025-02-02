@@ -5,7 +5,7 @@ import tensorflow as tf
 import numpy as np
 import io
 import os
-from fastapi.middleware.cors import CORSMiddleware  # Import CORSMiddleware
+from fastapi.middleware.cors import CORSMiddleware # For linking frontend and backend port
 import cv2
 from tensorflow.keras.models import load_model
 
@@ -20,22 +20,12 @@ app.add_middleware(
     allow_headers=["*"],  # Allow all headers
 )
 
-# Define or import InstanceNormalization
-class InstanceNormalization:
-    def __call__(self, x):
-        return x
 
-# Load the model (use the correct path for your model file)
+# Load the model 
 MODEL_PATH = "D:/Projects/Main_Project/Face-Sketch-to-Image-Generation-using-GAN-master/Models/Pixel[02]_Context[08]/g_model_epoch_000280.h5"
 
 # Load the pre-trained model with custom objects
-model = load_model(
-    MODEL_PATH,
-    custom_objects={
-        'InstanceNormalization': InstanceNormalization,
-        'mae': 'mean_absolute_error'
-    }
-)
+model = load_model(MODEL_PATH)
 print(f"Model loaded from: {MODEL_PATH}")
 
 # Function to process the uploaded image
@@ -45,12 +35,12 @@ def process_image(image_bytes):
     image = image.resize((256, 256))  # Model's input size is 256x256
     img_array = np.array(image)
     
-    # Normalize image as per your model's requirement
+    # Normalize image 
     norm_img = (img_array.copy() - 127.5) / 127.5  # Normalize to [-1, 1]
 
     # Expand dims and predict using the model
     g_img = model.predict(np.expand_dims(norm_img, 0))[0]
-    g_img = (g_img + 1) * 127.5  # Adjust if needed to [0, 255]
+    g_img = (g_img + 1) * 127.5  # Denormalize to [0, 255]
     
     # Resize generated image for display (if necessary)
     g_img = cv2.resize(g_img, (200, 250))
