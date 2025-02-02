@@ -22,7 +22,7 @@ app.add_middleware(
 
 
 # Load the model 
-MODEL_PATH = "D:/Projects/Main_Project/Face-Sketch-to-Image-Generation-using-GAN-master/Models/Pixel[02]_Context[08]/g_model_epoch_000280.h5"
+MODEL_PATH = "../models/g_model_epoch_000354.h5"
 
 # Load the pre-trained model with custom objects
 model = load_model(MODEL_PATH)
