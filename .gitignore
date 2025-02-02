@@ -1,2 +1,3 @@
 training/Models/*.h5
 training/CUHK/
+models/g_model_epoch_000354.h5
