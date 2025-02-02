@@ -1,62 +1,219 @@
+/* Container for the image upload */
 .image-upload-container {
   display: flex;
-  flex-direction: column; /* Arrange elements vertically by default */
+  flex-direction: column; /* Arrange elements vertically */
   align-items: center; /* Center the content horizontally */
-  gap: 20px; /* Adjust the space between elements */
-  padding-top: 140px; /* Adjusted top padding */
+  gap: 20px; /* Space between elements */
+  padding-top: 30px; /* Adjusted top padding */
 }
 
+/* Box containing the two image boxes with design */
+.image-box-wrapper {
+  background-color: #333; /* Dark background */
+  border-radius: 16px; /* Rounded corners for the box */
+  padding: 20px; /* Add padding inside the box */
+  border: 2px solid #444; /* Light border around the box */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adding a shadow for better visibility */
+  width: 100%; /* Width of the box */
+  max-width: 1000px; /* Max width for larger screens */
+  text-align: center; /* Center the content inside */
+}
+
+/* Container for the image boxes (input and output) */
 .image-box-container {
   display: flex;
-  flex-direction: row; /* Arrange the image boxes horizontally by default */
-  gap: 100px; /* Space between the two boxes */
+  flex-direction: row; /* Arrange the image boxes horizontally */
+  gap: 250px; /* Adjust the space between the two boxes */
   justify-content: center; /* Center the boxes horizontally */
 }
 
-.image-box {
-  border: 2px dashed gray;
-  width: 300px; /* Fixed width */
-  height: 300px; /* Fixed height */
-  display: flex;
-  align-items: center; /* Center content vertically inside the box */
-  justify-content: center; /* Center content horizontally inside the box */
-  text-align: center;
-  overflow: hidden; /* Prevents image overflow */
+/* Title styles for each box, now positioned inside the image box */
+.box-title {
+  font-size: 1.2rem; /* Adjusted title size */
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 10px; /* Space between the title and the box */
+  padding: 5px; /* Padding around the title for better spacing */
+  /*background-color: #444; /* Dark background for the title */
+  border-radius: 8px;
+  width: 100%; /* Full width */
+  text-align: center; /* Title centered inside the box */
 }
 
+/* Individual image box with design */
+.image-box {
+  border: 2px solid #888; /* Solid border instead of dotted */
+  width: 350px; /* Reduced width */
+  height: 375px; /* Increased height */
+  display: flex;
+  flex-direction: column; /* Stack the title and image vertically */
+  align-items: center; /* Center content horizontally */
+  justify-content: flex-start; /* Align content at the top */
+  text-align: center;
+  overflow: hidden; /* Prevents image overflow */
+  background-color: #222; /* Background color for the boxes */
+  border-radius: 12px; /* Rounded corners */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+  padding: 10px;
+  box-sizing: border-box;
+  padding-bottom: 18px;
+}
+
+/* Inner box for input or generated image */
+.inner-box {
+  background-color: #312e2e; /* Slightly lighter background */
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+.inner-box-text{
+  color: rgb(219, 209, 209);
+}
+/* Hover effect for image box */
+.image-box:hover {
+  background-color: #333; /* Slightly lighter background on hover */
+  border-color: #aaa; /* Change border color on hover */
+}
+
+/* Image preview inside the box */
 .image-preview {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Ensures the image keeps its aspect ratio */
+  object-fit: fill; /* Ensures the image keeps its aspect ratio */
+  border-radius: 10px;
 }
 
+/* Hide the file input button */
 .file-input {
   display: none; /* Hide the file input */
 }
 
-.convert-button,
-.reset-button {
-  padding: 10px 20px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px; /* Adds spacing between the buttons and the boxes */
-}
+/* Buttons styling */
 
+
+/* ------------------- Convert Button -------------------- */
+.convert-button,
+.reset-button{
+  font-size: 15px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+.convert-button {
+  border-radius: 4px;
+  background-color: #2e2828;
+  border: 5px;
+  border: 2px solid rgb(255, 255, 255);  
+  padding: 11px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
 .convert-button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
+.convert-button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.convert-button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.convert-button:hover span {
+  padding-right: 25px;
+}
+
+.convert-button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+/* ------------------- Reset Button -------------------- */
+
 
 .reset-button {
-  background-color: #f44336;
+width: 150px;
+height: 50px;
+padding: 11px;
+cursor: pointer;
+display: flex;
+align-items: center;
+background: red;
+border: none;
+border-radius: 5px;
+box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+background: #e62222;
+}
+
+.reset-button, .reset-button span {
+transition: 200ms;
+}
+
+.reset-button .text {
+transform: translateX(25px);
+color: white;
+}
+
+.reset-button .icon {
+position: absolute;
+border-left: 2px solid #c41b1b;
+transform: translateX(95px);
+height: 40px;
+width: 40px;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.reset-button svg {
+width: 15px;
+fill: #eee;
 }
 
 .reset-button:hover {
-  background-color: #e53935;
+background: #ff3636;
 }
+
+.reset-button:hover .text {
+color: transparent;
+}
+
+.reset-button:hover .icon {
+width: 130px; /* Adjust the 'X' icon */
+border-left: none;
+transform: translateX(0);
+}
+
+.reset-button:focus {
+outline: none;
+}
+
+.reset-button:active .icon svg {
+transform: scale(0.8);
+}
+
+.button-container{
+  padding-bottom: 50px;
+}
+
+
+
 
 /* Mobile view adjustments */
 @media (max-width: 768px) {
@@ -65,22 +222,52 @@
     gap: 20px;
   }
 
+  /* Image upload box inside container should also be full-width */
+  .image-box-wrapper {
+    width: 90%; /* Full width on mobile */
+    padding: 20px; /* Adjust padding on smaller screens */
+  }
+
   .image-box-container {
-    flex-direction: column; /* Stack image boxes vertically in mobile view */
+    flex-direction: column; /* Stack the image boxes vertically */
     gap: 20px; /* Space between the image boxes */
   }
 
+  /* Ensure each box is centered on mobile */
   .image-box {
-    width: 300px; /* Fixed width for mobile view */
-    height: 300px; /* Fixed height for mobile view */
+    max-width: 350px;
     margin: 0 auto; /* Center the boxes horizontally */
   }
 
-  .convert-button,
-  .reset-button {
-    width: 100%; /* Make the buttons full width on mobile */
+  /* Full width for buttons on mobile */
+  .button-container {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center; /* Center align horizontally */
+    gap: 10px; /* Space between buttons */
+    padding-top: 10px; /* Optional: Adjust top padding */
   }
+  
+  .convert-button
+   {
+    display: flex; /* Use flex instead of flexbox (which is invalid) */
+    align-items: center;
+    justify-content: center; /* Center content inside buttons */
+  }
+  .reset-button{
+    display: flex;
+    padding: 10px;
+    height: 45px;
+  }
+  
 }
+
+
+
+
+
+
+
 
 /* Full screen view (larger screens) */
 @media (min-width: 769px) {
@@ -90,8 +277,6 @@
     gap: 20px; /* Space between the buttons */
   }
 
-  .convert-button,
-  .reset-button {
-    width: auto; /* Allow the buttons to take only the space they need */
-  }
+ 
+  
 }

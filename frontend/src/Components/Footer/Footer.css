@@ -1,0 +1,19 @@
+.names{
+    color: white;
+    text-align: center;
+    padding-top: 8px;
+}
+
+.container{
+    background-color: rgb(50, 46, 46);
+    height: 40px;
+}
+
+/* Mobile View */
+
+@media (max-width: 768px) {
+
+    .names{
+        padding: 0;
+    }
+}

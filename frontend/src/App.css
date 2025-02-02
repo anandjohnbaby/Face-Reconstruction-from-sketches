@@ -1,3 +1,92 @@
-*{
-    margin: 0;
+/* Global container setup */
+body, .app-container {
+  padding: 0;
+  min-height: 100vh;
+  width: 100vw;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+      120deg,
+      #080808,
+      #1a1a1a,
+      #242424,
+      #1a1a1a,
+      #080808
+  );
+  background-size: 200% 200%;
+  animation: containedFlow 15s ease-in-out infinite;
+  position: relative;
+  overflow-x: hidden;  /* Hide horizontal scrolling */
+  overflow-y: auto;    /* Enable vertical scrolling */
+  height: 100vh;       /* Ensure the body takes up the full viewport height */
+  width: 100vw;        /* Ensure the body takes up the full viewport width */
+  box-sizing: border-box; /* Ensure padding doesn't extend the page size */
+}
+
+
+
+/* Soft vignette */
+body::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+      circle at center,
+      transparent 30%,
+      rgba(0, 0, 0, 0.1) 100%
+  );
+  pointer-events: none;
+}
+
+/* Contained gradient animation */
+@keyframes containedFlow {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
+/* Contained shine animation */
+@keyframes containedShine {
+  0% {
+      opacity: 0;
+      transform: translateX(-100%) translateY(-100%);
+  }
+  25% {
+      opacity: 1;
+  }
+  50% {
+      opacity: 0;
+      transform: translateX(100%) translateY(100%);
+  }
+  100% {
+      opacity: 0;
+      transform: translateX(-100%) translateY(-100%);
+  }
+}
+
+/* Optional content container */
+.content {
+  position: relative;
+  z-index: 1;
+  background: rgba(20, 20, 20, 0.5);
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  max-height: 80vh; /* Set max height for content */
+  overflow-y: auto; /* Enable vertical scrolling for content */
+  width: 100%; /* Ensure content is within the full width of the container */
+}
+
+/* Basic responsive design */
+@media (max-width: 768px) {
+  .app-container {
+      padding: 10px;
+  }
 }
